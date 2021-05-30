@@ -1,10 +1,10 @@
 import React, { Component, useEffect } from 'react';
 import { StyleSheet, View } from "react-native";
-import { useLocation, Route, Link } from "react-router-native";
+import { useLocation,  Link } from "react-router-native";
 import { Container, Title, Header, Left, Body, Right, Content, Footer, FooterTab, Button, Icon, Text, Badge } from 'native-base';
 
 
-function NavigationBar({match}) {
+function NavigationBar() {
     let location = useLocation();
 
     useEffect(() => {
@@ -15,42 +15,31 @@ function NavigationBar({match}) {
     return(
         <>
     <Container>
-    <Header>
-          <Left>
-            <Button transparent>
-              <Icon name='arrow-back' />
-            </Button>
-          </Left>
-          <Body>
-            <Title> { location ? location.pathname : null }</Title>
-          </Body>
-          <Right>
-            <Button transparent>
-              <Icon name='menu' />
-            </Button>
-          </Right>
-        </Header>
         <Content />
         <Footer>
           <FooterTab>
               <Link to={"/home"}>
-                <Button vertical>
+                {/* <Button vertical>
                 <Icon name="home" />
                 <Text>Home</Text>
-                </Button>
+                </Button> */}
+                <Text>Home</Text>
               </Link>
             <Link to={"/movies"}>
-                <Button badge vertical>
+                {/* <Button badge vertical>
                 <Badge><Text>26</Text></Badge>
                 <Icon name="film" />
                 <Text>Movies</Text>
-                </Button>
+                </Button> */}
+                
+                <Text>Movies</Text>
             </Link>
             <Link to="/profile/:id">
-                <Button vertical>
+              {/*   <Button vertical>
                 <Icon name="person" />
                 <Text>Profile</Text>
-                </Button>
+                </Button> */}
+                <Text>Profile</Text>
             </Link>
           </FooterTab>
         </Footer>
