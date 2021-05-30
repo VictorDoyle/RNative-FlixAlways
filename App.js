@@ -1,112 +1,110 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { NativeRouter, Route, Link } from "react-router-native";
+/* pages */
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+function Home() {
+  return <Text style={styles.header}>Home</Text>;
+}
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+function About() {
+  return <Text style={styles.header}>Recommendations</Text>;
+}
+
+function Topic({ match }) {
+  return <Text style={styles.topic}>{match.params.topicId}</Text>;
+}
+
+function Topics({ match }) {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View>
+      <Text style={styles.header}>Movies</Text>
+      <View>
+        <Link
+          to={`${match.url}/saved`}
+          style={styles.subNavItem}
+          underlayColor="#f0f4f7"
+        >
+          <Text>Saved Movies</Text>
+        </Link>
+        <Link
+          to={`${match.url}/watched`}
+          style={styles.subNavItem}
+          underlayColor="#f0f4f7"
+        >
+          <Text>Watched Movies</Text>
+        </Link>
+        <Link
+          to={`${match.url}/disliked`}
+          style={styles.subNavItem}
+          underlayColor="#f0f4f7"
+        >
+          <Text>Disliked Movies</Text>
+        </Link>
+      </View>
+
+      <Route path={`${match.url}/:topicId`} component={Topic} />
+      <Route
+        exact
+        path={match.url}
+        render={() => <Text style={styles.topic}> Find Your Movies</Text>}
+      />
     </View>
   );
-};
+}
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+function App() {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+    <NativeRouter>
+      <View style={styles.container}>
+        <View style={styles.nav}>
+          <Text> Welcome To FlixAlways </Text>
+          <Link to="/" underlayColor="#f0f4f7" style={styles.navItem}>
+            <Text>Home</Text>
+          </Link>
+          <Link to="/about" underlayColor="#f0f4f7" style={styles.navItem}>
+            <Text>Movie Recommendations</Text>
+          </Link>
+          <Link to="/topics" underlayColor="#f0f4f7" style={styles.navItem}>
+            <Text>Your Movies</Text>
+          </Link>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/topics" component={Topics} />
+      </View>
+    </NativeRouter>
   );
-};
+}
+
+
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    marginTop: 25,
+    padding: 10
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  header: {
+    fontSize: 20
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  nav: {
+    flexDirection: "row",
+    justifyContent: "space-around"
   },
-  highlight: {
-    fontWeight: '700',
+  navItem: {
+    flex: 1,
+    alignItems: "center",
+    padding: 10
   },
+  subNavItem: {
+    padding: 5
+  },
+  topic: {
+    textAlign: "center",
+    fontSize: 15
+  }
 });
 
 export default App;
