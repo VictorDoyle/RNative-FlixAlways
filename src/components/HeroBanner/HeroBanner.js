@@ -10,7 +10,7 @@ function HeroBanner(props, {history}) {
         <Header>
           <Left>
             <Button transparent>
-              <Icon name='arrow-back' onPress={() => {history.push(0)}}/>
+              <Icon name='arrow-back'/>
             </Button>
           </Left>
           <Body>

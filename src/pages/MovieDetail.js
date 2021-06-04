@@ -5,7 +5,6 @@ function MovieDetail() {
     return(
         <>
         <SafeAreaView>
-        <HeroBanner headerTitle= {"Movie.title"}/>
         <Text> Movie Detail Page</Text>
         </SafeAreaView>
         </>
