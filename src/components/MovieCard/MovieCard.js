@@ -10,9 +10,9 @@ function MovieCard() {
                         <CardItem cardBody>
                         <Image source={require('./movie1.jpg')} style={{height: 200, width: null, flex: 1}} style={styles.movieImageCard}/>
                         </CardItem>
-                        <CardItem >
+                        < >
                        <ActionButtons/>
-                        </CardItem>
+                        </>
                     </Card>
                  
         </>

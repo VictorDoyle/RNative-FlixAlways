@@ -11,9 +11,9 @@ function ActionButtons() {
            <Fab
             active={isActive}
             direction="up"
-            containerStyle={{ }}
+            containerStyle={{ right: -5, bottom: 0}}
             style={styles.actionButtonContainer}
-            /* position="bottomRight" */
+            position="bottomRight"
             onPress={() => {isActive === false ? setIsActive(true) : setIsActive(false)}}>
             <Icon name="ellipsis-vertical" />
             <Button style={styles.saveButton}>
@@ -38,22 +38,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#5067FF',
         width: 40,
         height: 40,
-        right: -15,
+        paddingLeft: 2,
+        
     },
     saveButton: {
-        right: -15,
         backgroundColor: '#e6b800',
     },
     likeButton: {
-        right: -15,
         backgroundColor: '#34A34F',
     },
     dislikeButton: {
         backgroundColor: '#DD5144',
-        right: -15,
     },
     watchedButton: {
-        right: -15,
         backgroundColor: 'grey',
         
     },
