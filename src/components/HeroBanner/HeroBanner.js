@@ -44,7 +44,7 @@ function HeroBanner(props, {history}) {
             </Button>
             {/* Send To App Tutorial */}
             <Button transparent>
-              <Icon name='more' />
+              <Icon name='help-circle' />
             </Button>
           </Right>
         </Header>
