@@ -22,10 +22,12 @@ function MovieCard() {
 const styles = StyleSheet.create({
     movieCardMain: {
       width: 160,
+      borderRadius: 5,
     },
     movieImageCard: {
         height: 250,
         width: 160,
+        borderRadius: 5,
     },
     
 
