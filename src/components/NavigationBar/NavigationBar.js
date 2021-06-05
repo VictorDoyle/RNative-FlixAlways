@@ -19,11 +19,10 @@ function NavigationBar() {
         <Footer>
           <FooterTab>
               <Link to={"/home"}>
-                {/* <Button vertical>
+                <>
                 <Icon name="home" />
                 <Text>Home</Text>
-                </Button> */}
-                <Text>Home</Text>
+                </>
               </Link>
             <Link to={"/movies"}>
                 {/* <Button badge vertical>

@@ -7,12 +7,13 @@ function HeroBanner(props, {history}) {
     return(
         <>
         
-        <Header>
-          <Left>
+        <Header transparent>
+          {/* if history.props has back[0] or past, show below */}
+          {/* <Left>
             <Button transparent>
               <Icon name='arrow-back'/>
             </Button>
-          </Left>
+          </Left> */}
           <Body>
             <Title>{props.headerTitle}</Title>
           </Body>
