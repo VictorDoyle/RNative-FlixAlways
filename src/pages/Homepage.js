@@ -1,13 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView, ScrollView  } from "react-native";
 /* vendor styling */
 import { Container, Header, Left, Body, Subtitle, Title, Grid, Col } from 'native-base';
 /* components */
 import HeroBanner from "../components/HeroBanner/HeroBanner.js"
 import MovieCard from "../components/MovieCard/MovieCard.js";
+import Loader from "../components/Loader/Loader.js";
+import Infinite from "../components/Infinite/Infinite.js";
+/* GQL */
+import { useQuery } from "@apollo/client";
+import { ALLMOVIES } from "../graphql/operations";
 
 
 function Homepage() {
+    const [allMovies, setAllMovies] = useState([]);
+    const [take] = useState(10);
+    const [cursor, setCursor] = useState(1);
+    const [skip, setSkip] = useState(0);
+
+    
+    const {
+        loading: loadingAll,
+        data: dataAll,
+        fetchMore,
+      } = useQuery(ALLMOVIES, {
+        variables: {
+          allMoviesTake: take,
+          allMoviesSkip: skip,
+          allMoviesMyCursor: cursor,
+        },
+      });
+
+      useEffect(() => {
+        if (!loadingAll && dataAll) {
+          setAllMovies(dataAll.allMovies);
+        }
+    
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [loadingAll, dataAll]);
+
+      const bigFetch = () => {
+        fetchMore(
+          {
+            variables: {
+              allMoviesMyCursor: allMovies.length - 1,
+            },
+          },
+          setCursor(allMovies[allMovies.length - 1].categoryId),
+          setSkip(2),
+        );
+      };
+
+
+
+
     return(
         <>
         <SafeAreaView>
@@ -26,12 +72,11 @@ function Homepage() {
             <ScrollView style={styles.movieCardScrollView} horizontal={true}>
             <Grid>
                 <Col style={styles.movieCardContainer}>
-            <MovieCard style={styles.movieCardGrid}/>
-            <MovieCard style={styles.movieCardGrid}/>
-            <MovieCard style={styles.movieCardGrid}/>
-            <MovieCard style={styles.movieCardGrid}/>
-            <MovieCard style={styles.movieCardGrid}/>
-            <MovieCard style={styles.movieCardGrid}/>
+                {allMovies.length > 0 ? (
+                        <Infinite allMovies={allMovies}/>
+                    ) : (
+                        <Loader />
+                    )}
            
                 </Col>
             </Grid>

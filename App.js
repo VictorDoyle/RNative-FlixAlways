@@ -18,23 +18,23 @@ const httpLink = new HttpLink({
   uri: "https://stream-helper-api.herokuapp.com/graphql" /* "http://localhost:4025/graphql" */,
 });
 
-const authMiddleware = new ApolloLink((operation, forward) => {
+/* const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({
     headers: {
       authorization:
-        Cookies.get("cookie") || localStorage.getItem("uid") || null,
+         localStorage.getItem("uid") || null,
     },
 
     fetchOptions: {
       headers: {
-        authorization: Cookies.get("cookie") || null,
+        authorization: null,
       },
       credentials: "include",
     },
   });
 
   return forward(operation);
-});
+}); */
 
 
 
@@ -137,7 +137,7 @@ const client = new ApolloClient({
       },
     },
   }),
-  link: concat(authMiddleware, httpLink),
+  link: httpLink,
 });
 
 
