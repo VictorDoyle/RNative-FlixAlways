@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 /* imports */
 import ProfileMovieList from "../components/Profile/ProfileMovieList";
+import EditProfile from "../components/Profile/EditProfile";
 /* GraphQl */
 import { useMutation } from "@apollo/client";
 import { UPDATEUSERPROFILE } from "../graphql/operations";
@@ -36,7 +37,7 @@ function Profile() {
        
       
             <Title> Your Profile</Title>
-            <Text> Add buttons to edit profile info here</Text>
+            <EditProfile/>
 
 
 
