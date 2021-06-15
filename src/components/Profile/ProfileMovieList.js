@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Header, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
+import { Link } from "react-router-native";
 
 function ProfileMovieList() {
     /* add mapper here for mapping through user lists */
@@ -18,7 +19,9 @@ function ProfileMovieList() {
                 </Body>
                 <Right>
                     <Button transparent>
-                    <Text>View</Text>
+                    <Link to="/saved" underlayColor="#f0f4f7" >  
+                        <Text>View</Text>
+                    </Link>
                     </Button>
                 </Right>
                 </ListItem>
@@ -38,7 +41,9 @@ function ProfileMovieList() {
                 </Body>
                 <Right>
                     <Button transparent>
-                    <Text>View</Text>
+                    <Link to="/watched" underlayColor="#f0f4f7" >  
+                        <Text>View</Text>
+                    </Link>
                     </Button>
                 </Right>
                 </ListItem>
@@ -58,8 +63,10 @@ function ProfileMovieList() {
                     <Text note numberOfLines={1}>Movies You've Disliked</Text>
                 </Body>
                 <Right>
-                    <Button transparent>
-                    <Text>View</Text>
+                <Button transparent>
+                    <Link to="/disliked" underlayColor="#f0f4f7" >  
+                        <Text>View</Text>
+                    </Link>
                     </Button>
                 </Right>
                 </ListItem>

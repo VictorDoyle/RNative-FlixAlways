@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-function SavedMovies() {
+
+function LikedMovies() {
     return(
         <>
- 
-
+     
         </>
     )
 }
 
-export default SavedMovies
+export default LikedMovies

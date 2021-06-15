@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Text, Item, Input, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import { Link } from "react-router-native";
 
 function HeroBanner(props, {history}) {
   const [isHidden, setIsHidden] = useState(true)
@@ -40,7 +41,9 @@ function HeroBanner(props, {history}) {
             
             {/* send to Liked Movies */}
             <Button transparent>
-              <Icon name='heart' />
+              <Link to="/watched" underlayColor="#f0f4f7" >  
+                  <Icon name="heart"/>
+              </Link>
             </Button>
             {/* Send To App Tutorial */}
             <Button transparent>

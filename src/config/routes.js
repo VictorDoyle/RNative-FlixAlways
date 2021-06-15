@@ -8,6 +8,8 @@ import Profile from "../pages/Profile.js";
 import WatchedMovies from "../pages/WatchedMovies.js";
 import SavedMovies from "../pages/SavedMovies.js";
 import MovieDetail from "../pages/MovieDetail.js";
+import DislikedMovies from '../pages/DislikedMovies.js';
+import LikedMovies from "../pages/LikedMovies.js";
 // import NotFound from "../pages/NotFound";
 
 const routes = (
@@ -19,6 +21,8 @@ const routes = (
     <Route path="/movie/:id" component={MovieDetail} />
     <Route path="/watched" component={WatchedMovies} />
     <Route path="/saved" component={SavedMovies} />
+    <Route path="/liked" component={LikedMovies} />
+    <Route path="/disliked" component={DislikedMovies} />
     {/* <Route component={NotFound} /> */}
   </Switch>
 );

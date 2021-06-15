@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, SafeAreaView, ScrollView  } from "react-native"
 /* vendor styling */
 import { Container, Header, Left, Body, Subtitle, Title, Grid, Col } from 'native-base';
 /* components */
-import HeroBanner from "../components/HeroBanner/HeroBanner.js"
 import MovieCard from "../components/MovieCard/MovieCard.js";
 import Loader from "../components/Loader/Loader.js";
 import Infinite from "../components/Infinite/Infinite.js";
@@ -58,7 +57,7 @@ function Homepage() {
         <>
         <SafeAreaView>
             {/* Top Section */}
-        <HeroBanner/>
+  
             <Title>Welcome To FlixAlways</Title>
             <Subtitle>You'll Find Every Movie You Haven't Watched Here</Subtitle>
             {/* Top Section End */}

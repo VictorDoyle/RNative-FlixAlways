@@ -3,6 +3,7 @@ import { StyleSheet,  View } from "react-native";
 import { NativeRouter, Route, Link } from "react-router-native";
 /* bases */
 import NavigationBar from "./src/components/NavigationBar/NavigationBar.js";
+import HeroBanner from "./src/components/HeroBanner/HeroBanner.js";
 import routes from "./src/config/routes.js";
 /* GQL */
 import {
@@ -156,6 +157,7 @@ function App() {
 
     <ApolloProvider client={client}>
       <NativeRouter>
+        <HeroBanner/>
         {routes}
         <NavigationBar/>
       </NativeRouter>

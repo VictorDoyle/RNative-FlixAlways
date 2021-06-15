@@ -61,7 +61,9 @@ function EditProfile(){
              <Input />
            </Item>
 
-           <Button success><Text> Submit </Text></Button>
+           <Button success onPress={()=> {submitProfileEdit}}>
+               <Text> Submit </Text>
+            </Button>
          </Form>
     : <>
     </>}
