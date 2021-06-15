@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import {StyleSheet} from 'react-native';
-import { Container, Header, View, Button, Icon, Fab } from 'native-base';
+import { Container, Header, View, Text, Button, Icon, Fab } from 'native-base';
 import { useMutation } from "@apollo/client";
 import { USERUPDATE } from "../../graphql/operations";
 
@@ -59,7 +59,12 @@ function ActionButtons(props) {
             position="bottomRight"
             onPress={() => {isActive === false ? setIsActive(true) : setIsActive(false)}}>
             <Icon name="ellipsis-vertical" />
-            <Button style={styles.saveButton} onPress={() => {submitSave()}}>
+            <Button style={styles.saveButton} onPress={() => {submitSave();
+         Toast.show({
+          text: 'Wrong password!',
+          buttonText: 'Okay'
+        })
+          }}>
               <Icon name="bookmark" />
             </Button>
             <Button style={styles.likeButton} onPress={() => {submitLike()}}>
@@ -71,6 +76,7 @@ function ActionButtons(props) {
             <Button style={styles.watchedButton} onPress={() => {submitWatched()}}>
               <Icon name="eye" />
             </Button>
+  
           </Fab>
         </>
     )
