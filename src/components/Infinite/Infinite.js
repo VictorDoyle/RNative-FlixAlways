@@ -14,9 +14,9 @@ const Infinite = ({ allMovies }) => {
   );
   const Mapper = () => (
     <>
-      {languageFilter.map((movie, i) => (
+      {languageFilter.map((movie, index) => (
         <>
-          <MovieCard {...movie} key={i + 1} />
+          <MovieCard {...movie} key={index} />
         </>
       ))}
     </>

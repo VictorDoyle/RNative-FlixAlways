@@ -1,10 +1,53 @@
 import React, { Component, useState } from 'react';
 import {StyleSheet} from 'react-native';
 import { Container, Header, View, Button, Icon, Fab } from 'native-base';
+import { useMutation } from "@apollo/client";
+import { USERUPDATE } from "../../graphql/operations";
 
-
-function ActionButtons() {
+function ActionButtons(props) {
+    const [update, { loading, error }] = useMutation(USERUPDATE);
     const [isActive, setIsActive] = useState(false);
+
+    console.log(props.id, "PROPS ID")
+
+    const submitLike = async (e) => {
+      e.preventDefault();
+      await update({
+        variables: {
+          addMovieToUserMovieId: props.id,
+          addMovieToUserLiked: true,
+        },
+      });
+    };
+  
+    const submitDislike = async (e) => {
+      e.preventDefault();
+      await update({
+        variables: {
+          addMovieToUserMovieId: props.id,
+          addMovieToUserDisliked: true,
+        },
+      });
+    };
+  
+    const submitSave = async () => {
+      await update({
+        variables: {
+          addMovieToUserMovieId: props.id,
+          addMovieToUserSaved: true,
+        },
+      });
+    };
+
+    const submitWatched = async (e) => {
+      e.preventDefault();
+      await update({
+        variables: {
+          addMovieToUserMovieId: props.id,
+          addMovieToUserWatched: true,
+        },
+      });
+    };
 
     return(
         <>
@@ -16,16 +59,16 @@ function ActionButtons() {
             position="bottomRight"
             onPress={() => {isActive === false ? setIsActive(true) : setIsActive(false)}}>
             <Icon name="ellipsis-vertical" />
-            <Button style={styles.saveButton}>
+            <Button style={styles.saveButton} onPress={() => {submitSave()}}>
               <Icon name="bookmark" />
             </Button>
-            <Button style={styles.likeButton}>
+            <Button style={styles.likeButton} onPress={() => {submitLike()}}>
               <Icon name="thumbs-up" />
             </Button>
-            <Button style={styles.dislikeButton}>
+            <Button style={styles.dislikeButton} onPress={() => {submitDislike()}}>
               <Icon name="thumbs-down" />
             </Button>
-            <Button style={styles.watchedButton}>
+            <Button style={styles.watchedButton} onPress={() => {submitWatched()}}>
               <Icon name="eye" />
             </Button>
           </Fab>

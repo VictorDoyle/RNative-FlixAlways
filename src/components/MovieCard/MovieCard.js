@@ -13,7 +13,7 @@ function MovieCard(props) {
                         <Image source={Image_Http_URL} style={{height: 200, width: null, flex: 1}} style={styles.movieImageCard}/>
                         </CardItem>
                         < >
-                       <ActionButtons/>
+                       <ActionButtons {...props}/>
                         </>
                     </Card>
                  
