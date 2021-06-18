@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 /* imports */
 import ProfileMovieList from "../components/Profile/ProfileMovieList";
 import EditProfile from "../components/Profile/EditProfile";
@@ -25,9 +25,11 @@ function Profile() {
 
 
             <Title> Your Movies</Title>
-            <ProfileMovieList/>
+                <ProfileMovieList/>
             <Title> Your Movie Lists</Title>
-            <UserMovieList/>
+            <ScrollView>
+                <UserMovieList/>
+            </ScrollView>
         </SafeAreaView>
         </>
     )
