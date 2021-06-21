@@ -1,6 +1,7 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import InfiniteRecommendations from "../components/Infinite/InfiniteRecommendations";
+
 function Movies() {
     return(
         <>
