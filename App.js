@@ -5,6 +5,8 @@ import { NativeRouter, Route, Link } from "react-router-native";
 import NavigationBar from "./src/components/NavigationBar/NavigationBar.js";
 import HeroBanner from "./src/components/HeroBanner/HeroBanner.js";
 import routes from "./src/config/routes.js";
+/* required import for NativeBase */
+import { Root } from "native-base";
 /* GQL */
 import {
   ApolloClient,
@@ -154,7 +156,7 @@ const client = new ApolloClient({
 
 function App() {
   return (
-
+<Root>
     <ApolloProvider client={client}>
       <NativeRouter>
         <HeroBanner/>
@@ -162,6 +164,7 @@ function App() {
         <NavigationBar/>
       </NativeRouter>
     </ApolloProvider>
+</Root>
 
   );
 }
