@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Text, Item, Input, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
-import { Link } from "react-router-native";
+import { Link, useHistory } from "react-router-native";
 import { useLazyQuery } from "@apollo/client";
 import { StyleSheet, SafeAreaView} from 'react-native';
 import { MOVIESEARCH } from "../../graphql/operations";
@@ -11,6 +11,11 @@ function HeroBanner(props) {
   const [searchTerm, setSearchTerm] = useState(undefined);
   const [results, setResults] = useState();
 
+
+  const history = useHistory();
+  function handleClick(path) {
+    history.push(path);
+  }
   const [movieSearch, { loading, data }] = useLazyQuery(MOVIESEARCH, {
     fetchPolicy: "no-cache",
   });
@@ -100,10 +105,10 @@ function HeroBanner(props) {
             {isHidden === false ? <>
             </> : 
             <>
-            <Button transparent>
-            <Link to="/watched" underlayColor="#f0f4f7" >  
-                  <Icon name="heart"/>
-              </Link>
+            <Button transparent onPress={() => handleClick("saved")}>
+           
+                  <Icon name="bookmark"/>
+     
             </Button>
             </>}
          

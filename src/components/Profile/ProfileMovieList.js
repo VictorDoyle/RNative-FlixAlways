@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
+import { Container, Header, Icon, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
 import { Link } from "react-router-native";
 
 function ProfileMovieList() {
@@ -11,15 +11,16 @@ function ProfileMovieList() {
                 {/* thumbnail is first movie img or randomized */}
                 <ListItem thumbnail>
                 <Left>
+                   
                     <Thumbnail square source={{ uri: 'Image URL' }} />
                 </Left>
                 <Body>
-                    <Text>Saved Movies</Text>
-                    <Text note numberOfLines={1}>Every Movie You've Saved</Text>
+                    <Text>Liked Movies</Text>
+                    <Text note numberOfLines={1}>Every Movie You've Liked</Text>
                 </Body>
                 <Right>
                     <Button transparent>
-                    <Link to="/saved" underlayColor="#f0f4f7" >  
+                    <Link to="/liked" underlayColor="#f0f4f7" >  
                         <Text>View</Text>
                     </Link>
                     </Button>

@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, SafeAreaView} from "react-native";
-import { Form, Item, Input, Container, Content, Text, Button} from "native-base"
-import { NativeRouter, Route, Link, useHistory } from "react-router-native";
+import { Form, Item, Input, Text, Button, Content} from "native-base"
+import { useHistory } from "react-router-native";
 import { SIGNUP, LOGIN } from "../graphql/operations";
 import { useMutation } from "@apollo/client";
+/* cookies */
+/* import {Cookie} from 'react-native-cookie';
+
+ */
 function LandingPage() {
+  /* FIXME: recoil not available for native */
+  const [user, setUser] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -24,12 +30,23 @@ function LandingPage() {
   useMutation(SIGNUP);
 
 
-  const submitHandlerLogin = async (e) => {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
+  useEffect(() => {
+    if (!loadingL && dataL) {
+      const { signinUser } = dataL;
+      setUser(signinUser);
+     /*  Cookie.set("", "uid", `Bearer ${signinUser.token}`).then(() => console.log('=============Cookie Successfuly Set =============')); */
+      handleClick("home");
     }
+  }, [dataL]);
+
+  useEffect(() => {
+    if (!loadingS && dataS) {
+      setValidated(true);
+    }
+  }, [dataL]);
+
+  const submitHandlerLogin = async (e) => {
+
     await login({
       variables: {
         signinUserEmail: email,
@@ -39,11 +56,6 @@ function LandingPage() {
   };
 
   const submitHandlerSignup = async (e) => {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
     await signup({
       variables: {
         signupUserSignupInput: {
@@ -52,7 +64,14 @@ function LandingPage() {
           password: password,
         },
       },
-    });}
+    });
+    if (!loadingS && dataS) {
+      setIsNewUser(false);
+    }
+  };
+
+  if (loadingS) return "Loading...";
+
 
     return(
         <>
@@ -63,11 +82,11 @@ function LandingPage() {
           <Text style={styles.mainLandingHeadersTwo}> A Movie Finder App To Save You Time </Text>
 
           {/* login/signup section */}
-          <Button style={styles.landingButtons} onPress={()=>{setIsLoggingIn(true)}}>
+          <Button style={styles.landingButtons} onPress={()=>{isLoggingIn === true ? setIsLoggingIn(false) : setIsLoggingIn(true)}}>
             <Text>Login</Text>
           </Button>
 
-          <Button style={styles.landingButtons}  onPress={() => {setisSigningUp(true)}}>
+          <Button style={styles.landingButtons}  onPress={() => {isSigningUp === true ? setisSigningUp(false) : setisSigningUp(true)}}>
             <Text>Sign Up</Text>
           </Button>
 
@@ -78,7 +97,8 @@ function LandingPage() {
 
           {/* show login form */}
            
-          {isLoggingIn === true ? <>
+          {isLoggingIn ? <>
+          <>
           <Form>
             <Item>
               <Input placeholder="Username" />
@@ -86,10 +106,11 @@ function LandingPage() {
             <Item last>
               <Input placeholder="Password" />
             </Item>
-            <Button onPress={() => submitHandlerLogin, setIsLoggingIn(false)}>
+            <Button onPress={submitHandlerLogin}>
               <Text> Login </Text>
             </Button>
           </Form> 
+          </>
           </> :
           <>
           </>}
@@ -107,7 +128,7 @@ function LandingPage() {
             <Item last>
               <Input placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             </Item>
-            <Button onPress={() => submitHandlerSignup(), setisSigningUp(false)} >
+            <Button onPress={submitHandlerSignup} >
               <Text> Register </Text>
             </Button>
           </Form> 

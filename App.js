@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { StyleSheet,  View } from "react-native";
 import { NativeRouter, Route, Link } from "react-router-native";
+
 /* bases */
 import NavigationBar from "./src/components/NavigationBar/NavigationBar.js";
 import HeroBanner from "./src/components/HeroBanner/HeroBanner.js";
 import routes from "./src/config/routes.js";
 /* required import for NativeBase */
 import { Root } from "native-base";
+/* cookies */
+/* import Cookie from "react-native-cookie"; */
 /* GQL */
 import {
   ApolloClient,
@@ -21,24 +24,23 @@ const httpLink = new HttpLink({
   uri: "https://stream-helper-api.herokuapp.com/graphql" /* "http://localhost:4025/graphql" */,
 });
 
-/* const authMiddleware = new ApolloLink((operation, forward) => {
+const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({
-    headers: {
+  /*   headers: {
       authorization:
-         localStorage.getItem("uid") || null,
-    },
+        Cookie.get("cookie"),
+    }, */
 
     fetchOptions: {
-      headers: {
-        authorization: null,
-      },
+      /* headers: {
+        authorization: Cookie.get("cookie"),
+      }, */
       credentials: "include",
     },
   });
 
   return forward(operation);
-}); */
-
+});
 
 
 const client = new ApolloClient({
@@ -140,17 +142,8 @@ const client = new ApolloClient({
       },
     },
   }),
-  link: httpLink,
+  link: concat(authMiddleware, httpLink),
 });
-
-
-
-
-
-
-
-
-
 
 
 

@@ -6,9 +6,17 @@ import { Container, Content, Footer, FooterTab, Button, Icon, Text, Badge } from
 
 function NavigationBar() {
   const history = useHistory();
+  let counter = 0;
+
   function handleClick(path) {
     history.push(path);
+    counter++;
   }
+
+  useEffect(()=> {
+    console.log("refreshed")
+  }, [counter])
+
 
 
     return(

@@ -13,7 +13,8 @@ function Profile() {
     return(
         <>
         <SafeAreaView>
-        
+            <View>
+
         <Title> Hey "username here"!</Title>
             <Subtitle>All Your Liked, Disliked, Seen and Saved Movies Can Be Found Here</Subtitle>
            
@@ -30,6 +31,9 @@ function Profile() {
             <ScrollView>
                 <UserMovieList/>
             </ScrollView>
+            </View>
+        
+            
         </SafeAreaView>
         </>
     )
