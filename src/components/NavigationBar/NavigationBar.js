@@ -1,15 +1,14 @@
 import React, { Component, useEffect } from 'react';
 import { StyleSheet, View } from "react-native";
-import { useLocation,  Link } from "react-router-native";
-import { Container, Title, Header, Left, Body, Right, Content, Footer, FooterTab, Button, Icon, Text, Badge } from 'native-base';
+import { useHistory } from "react-router-native";
+import { Container, Content, Footer, FooterTab, Button, Icon, Text, Badge } from 'native-base';
 
 
 function NavigationBar() {
-    let location = useLocation();
-
-    useEffect(() => {
-       
-      },[ location ]);
+  const history = useHistory();
+  function handleClick(path) {
+    history.push(path);
+  }
 
 
     return(
@@ -18,28 +17,26 @@ function NavigationBar() {
         <Content />
         <Footer>
           <FooterTab>
-              <Link to={"/home"}>
-                <>
+                <Button vertical onPress={() => handleClick("home")}>
                 <Icon name="home" />
                 <Text>Home</Text>
-                </>
-              </Link>
-            <Link to={"/movies"}>
-                {/* <Button badge vertical>
+                </Button>
+
+                <Button badge vertical onPress={() => handleClick("movies")}>
                 <Badge><Text>26</Text></Badge>
                 <Icon name="film" />
                 <Text>Movies</Text>
-                </Button> */}
+                </Button>
+             
                 
-                <Text>Movies</Text>
-            </Link>
-            <Link to="/profile/:id">
-              {/*   <Button vertical>
+
+
+
+                <Button vertical onPress={() => handleClick("profile/:id")}>
                 <Icon name="person" />
                 <Text>Profile</Text>
-                </Button> */}
-                <Text>Profile</Text>
-            </Link>
+                </Button>
+
           </FooterTab>
         </Footer>
       </Container>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet,  View } from "react-native";
 import { NativeRouter, Route, Link } from "react-router-native";
 /* bases */
@@ -155,14 +155,24 @@ const client = new ApolloClient({
 
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
   return (
+
 <Root>
     <ApolloProvider client={client}>
+        {isLoggedIn ? <> 
       <NativeRouter>
-        <HeroBanner/>
+          <HeroBanner/>
         {routes}
         <NavigationBar/>
+        
       </NativeRouter>
+        </> : 
+        <> 
+        <NativeRouter>
+        {routes}
+        </NativeRouter>
+        </>}
     </ApolloProvider>
 </Root>
 
