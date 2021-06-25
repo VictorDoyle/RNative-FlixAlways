@@ -10,7 +10,7 @@ import SavedMovies from "../pages/SavedMovies.js";
 import MovieDetail from "../pages/MovieDetail.js";
 import DislikedMovies from '../pages/DislikedMovies.js';
 import LikedMovies from "../pages/LikedMovies.js";
-// import NotFound from "../pages/NotFound";
+import LearnMore from '../pages/LearnMore.js';
 
 const routes = (
   <Switch>
@@ -23,7 +23,7 @@ const routes = (
     <Route path="/saved" component={SavedMovies} />
     <Route path="/liked" component={LikedMovies} />
     <Route path="/disliked" component={DislikedMovies} />
-    {/* <Route component={NotFound} /> */}
+    <Route path="/learn-more" component={LearnMore} />
   </Switch>
 );
 

@@ -72,7 +72,7 @@ function LandingPage() {
           </Button>
 
 
-          <Button style={styles.landingButtons}  onPress={() => handleClick("home")}>
+          <Button style={styles.landingButtons}  onPress={() => handleClick("learn-more")}>
             <Text>Learn More About FlixAlways</Text>
           </Button>
 
@@ -115,7 +115,7 @@ function LandingPage() {
           <>
           </>}
 
-          
+
         </View>
         </SafeAreaView>
         </>
