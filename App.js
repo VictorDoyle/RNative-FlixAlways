@@ -9,7 +9,7 @@ import routes from "./src/config/routes.js";
 /* required import for NativeBase */
 import { Root } from "native-base";
 /* cookies */
-/* import Cookie from "react-native-cookie"; */
+import CookieManager from '@react-native-cookies/cookies';
 /* GQL */
 import {
   ApolloClient,
@@ -26,15 +26,15 @@ const httpLink = new HttpLink({
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext({
-  /*   headers: {
+    headers: {
       authorization:
-        Cookie.get("cookie"),
-    }, */
+        CookieManager.get("cookie"),
+    },
 
     fetchOptions: {
-      /* headers: {
-        authorization: Cookie.get("cookie"),
-      }, */
+      headers: {
+        authorization: CookieManager.get("cookie"),
+      },
       credentials: "include",
     },
   });
@@ -148,6 +148,7 @@ const client = new ApolloClient({
 
 
 function App() {
+  /* FIXME: change to conditional logic, if cookie present && valid setIsLoggedIN(true) else (false)*/
   const [isLoggedIn, setIsLoggedIn] = useState(true)
   return (
 

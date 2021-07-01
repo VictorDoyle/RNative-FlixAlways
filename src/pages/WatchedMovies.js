@@ -38,8 +38,15 @@ function WatchedMovies() {
                 Movies You've Watched
             </Title>
             <ScrollView>
+            <Col style={styles.verticalMovieGrid}>
+            <MovieCard style={styles.verticalMovieCard}/>
+            <MovieCard style={styles.verticalMovieCard} />
+            <MovieCard style={styles.verticalMovieCard}/>
+            <MovieCard style={styles.verticalMovieCard}/>
             {watchedMovies ? <Mapper /> : <Text> There Was An Error Getting Your Watched Movies!</Text>}
+                </Col>
             </ScrollView>
+
 
            
         </SafeAreaView>
@@ -47,5 +54,15 @@ function WatchedMovies() {
         </>
     )
 }
+
+const styles = StyleSheet.create({
+  verticalMovieGrid: {
+      justifyContent: 'center',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      flex: 1,
+  },
+
+})
 
 export default WatchedMovies

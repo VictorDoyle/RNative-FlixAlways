@@ -5,9 +5,8 @@ import { useHistory } from "react-router-native";
 import { SIGNUP, LOGIN } from "../graphql/operations";
 import { useMutation } from "@apollo/client";
 /* cookies */
-/* import {Cookie} from 'react-native-cookie';
+import CookieManager from '@react-native-cookies/cookies';
 
- */
 function LandingPage() {
   /* FIXME: recoil not available for native */
   const [user, setUser] = useState();
@@ -34,7 +33,19 @@ function LandingPage() {
     if (!loadingL && dataL) {
       const { signinUser } = dataL;
       setUser(signinUser);
-     /*  Cookie.set("", "uid", `Bearer ${signinUser.token}`).then(() => console.log('=============Cookie Successfuly Set =============')); */
+      try {
+        CookieManager.set({
+         name: 'cookie',
+         value: '55',
+         path: '/',
+         version: '1',
+         expires: '2022-05-30T12:30:00.00-05:00'
+       }).then((done) => {
+         console.log('CookieManager.set =>', done);
+       });
+      } catch (error) {
+        console.log(errorL)
+      }
       handleClick("home");
     }
   }, [dataL]);
